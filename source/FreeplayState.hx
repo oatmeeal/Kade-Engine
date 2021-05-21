@@ -23,7 +23,7 @@ class FreeplayState extends MusicBeatState
 
 	var selector:FlxText;
 	var curSelected:Int = 0;
-	var curDifficulty:Int = 1;
+	var curDifficulty:Int = 2;
 
 	var scoreText:FlxText;
 	var diffText:FlxText;
@@ -37,6 +37,7 @@ class FreeplayState extends MusicBeatState
 
 	override function create()
 	{
+		trace('FreeplayState');
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
 
 		for (i in 0...initSonglist.length)
@@ -44,7 +45,7 @@ class FreeplayState extends MusicBeatState
 			var data:Array<String> = initSonglist[i].split(':');
 			songs.push(new SongMetadata(data[0], Std.parseInt(data[2]), data[1]));
 		}
-
+		trace('line 48');
 		/* 
 			if (FlxG.sound.music != null)
 			{
@@ -73,7 +74,7 @@ class FreeplayState extends MusicBeatState
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
-
+		trace('Line 77');
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
@@ -110,7 +111,7 @@ class FreeplayState extends MusicBeatState
 
 		changeSelection();
 		changeDiff();
-
+		trace('Line 114');
 		// FlxG.sound.playMusic(Paths.music('title'), 0);
 		// FlxG.sound.music.fadeIn(2, 0, 0.8);
 		selector = new FlxText();
@@ -118,7 +119,7 @@ class FreeplayState extends MusicBeatState
 		selector.size = 40;
 		selector.text = ">";
 		// add(selector);
-
+		trace('Line 122');
 		var swag:Alphabet = new Alphabet(1, 0, "swag");
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
@@ -230,10 +231,6 @@ class FreeplayState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
-			case 0:
-				diffText.text = "EASY";
-			case 1:
-				diffText.text = 'NORMAL';
 			case 2:
 				diffText.text = "HARD";
 		}

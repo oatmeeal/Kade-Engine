@@ -27,7 +27,7 @@ class Character extends FlxSprite
 
 		var tex:FlxAtlasFrames;
 		antialiasing = true;
-
+		FlxG.log.add(curCharacter);
 		switch (curCharacter)
 		{
 			case 'gf':
@@ -493,6 +493,40 @@ class Character extends FlxSprite
 				addOffset("singRIGHT-alt", -1, -24);
 				addOffset("singLEFT-alt", -30, 15);
 				addOffset("singDOWN-alt", -30, -27);
+
+				playAnim('idle');
+
+			case 'oaty':
+				tex = Paths.getSparrowAtlas('characters/oaty');
+				frames = tex;
+				animation.addByPrefix('idle', 'Oaty idle dance', 24);
+				animation.addByPrefix('singUP', 'Oaty Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Oaty Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Oaty Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Oaty Sing Note LEFT', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+
+				playAnim('idle');
+
+			case 'oaty-crazy':
+				tex = Paths.getSparrowAtlas('characters/oaty-crazy');
+				frames = tex;
+				animation.addByPrefix('idle', 'Oaty idle dance', 24);
+				animation.addByPrefix('singUP', 'Oaty Sing Note UP', 24);
+				animation.addByPrefix('singRIGHT', 'Oaty Sing Note RIGHT', 24);
+				animation.addByPrefix('singDOWN', 'Oaty Sing Note DOWN', 24);
+				animation.addByPrefix('singLEFT', 'Oaty Sing Note LEFT', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
 		}

@@ -76,6 +76,7 @@ class Song
 	public static function parseJSONshit(rawJson:String):SwagSong
 	{
 		var swagShit:SwagSong = cast Json.parse(rawJson).song;
+		trace('songName is ' + swagShit.song);
 		swagShit.validScore = true;
 		return swagShit;
 	}

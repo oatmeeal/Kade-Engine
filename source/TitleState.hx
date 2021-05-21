@@ -303,40 +303,9 @@ class TitleState extends MusicBeatState
 
 			transitioning = true;
 			// FlxG.sound.music.stop();
-
-			new FlxTimer().start(2, function(tmr:FlxTimer)
-			{
-				// Get current version of Kade Engine
-
-				//var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
-				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/patchnotes/version.downloadMe");
-				var returnedData:Array<String> = [];
-				
-				http.onData = function (data:String)
-				{
-					returnedData[0] = data.substring(0, data.indexOf(';'));
-					returnedData[1] = data.substring(data.indexOf('-'), data.length);
-				  	if (!MainMenuState.kadeEngineVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState && MainMenuState.nightly == "")
-					{
-						trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
-						OutdatedSubState.needVer = returnedData[0];
-						OutdatedSubState.currChanges = returnedData[1];
-						FlxG.switchState(new OutdatedSubState());
-					}
-					else
-					{
-						FlxG.switchState(new MainMenuState());
-					}
-				}
-				
-				http.onError = function (error) {
-				  trace('error: $error');
-				  FlxG.switchState(new MainMenuState()); // fail but we go anyway
-				}
-				
-				http.request();
-			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
+
+			FlxG.switchState(new MainMenuState());
 		}
 
 		if (pressedEnter && !skippedIntro && initialized)
@@ -397,56 +366,33 @@ class TitleState extends MusicBeatState
 				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
-				addMoreText('present');
+				addMoreText('Present');
 			// credTextShit.text += '\npresent...';
 			// credTextShit.addText();
 			case 4:
+				addMoreText('Friday Night Funkin');
 				deleteCoolText();
 			// credTextShit.visible = false;
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				if (Main.watermarks)
-					createCoolText(['Kade Engine', 'by']);
-				else
-					createCoolText(['In Partnership', 'with']);
-			case 7:
-				if (Main.watermarks)
-					addMoreText('KadeDeveloper');
-				else
-				{
-					addMoreText('Newgrounds');
-					ngSpr.visible = true;
-				}
+				createCoolText(['Oaty Mod By']);
 			// credTextShit.text += '\nNewgrounds';
+			case 6:
+				addMoreText('Oatmeal');
+			case 7:
+				addMoreText('FutureMapper');
 			case 8:
-				deleteCoolText();
-				ngSpr.visible = false;
-			// credTextShit.visible = false;
-
-			// credTextShit.text = 'Shoutouts Tom Fulp';
-			// credTextShit.screenCenter();
+				addMoreText('Juho Ärmänen');
 			case 9:
-				createCoolText([curWacky[0]]);
-			// credTextShit.visible = true;
-			case 11:
-				addMoreText(curWacky[1]);
-			// credTextShit.text += '\nlmao';
+				addMoreText('irre__');
+			case 10:
+				addMoreText('Carlitosmorecom');
 			case 12:
 				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = "Friday";
-			// credTextShit.screenCenter();
-			case 13:
-				addMoreText('Friday');
-			// credTextShit.visible = true;
-			case 14:
-				addMoreText('Night');
-			// credTextShit.text += '\nNight';
-			case 15:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				ngSpr.visible = false;
 
-			case 16:
+			case 13:
 				skipIntro();
 		}
 	}
