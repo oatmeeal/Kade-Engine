@@ -71,6 +71,23 @@ class FreeplayState extends MusicBeatState
 
 		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBGBlue'));
 		add(bg);
+			/*
+		//Modifiers
+		var modsTri:FlxSprite = new FlxSprite().loadGraphic(Paths.image('Tri'));
+		modsTri.setGraphicSize(cast(modsTri.width*1.4), cast(modsTri.height*1.4));
+		modsTri.updateHitbox();
+		modsTri.y = FlxG.height - modsTri.height;
+		add(modsTri);
+
+		var modsText:Alphabet = new Alphabet(0, 30, "Modifiers", 0.4, true, false);
+		modsText.y = FlxG.height - (modsText.height*3);
+		modsText.isMenuItem = false;
+		add(modsText);
+
+		var modsButtonText:Alphabet = new Alphabet(0, 30, "Press M", 0.4, true, false);
+		modsButtonText.y = FlxG.height - modsButtonText.height*4;
+		modsButtonText.isMenuItem = false;
+		add(modsButtonText);*/
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);
@@ -78,6 +95,7 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
+			songText.x+=150;
 			songText.isMenuItem = true;
 			songText.targetY = i;
 			grpSongs.add(songText);
@@ -196,6 +214,9 @@ class FreeplayState extends MusicBeatState
 		if (controls.RIGHT_P)
 			changeDiff(1);
 
+		if (controls.M)
+			super.openSubState(new ModifiersSubState(0, 0));
+
 		if (controls.BACK)
 		{
 			FlxG.switchState(new MainMenuState());
@@ -220,10 +241,10 @@ class FreeplayState extends MusicBeatState
 	{
 		curDifficulty += change;
 
-		if (curDifficulty < 0)
+		if (curDifficulty < 1)
 			curDifficulty = 2;
 		if (curDifficulty > 2)
-			curDifficulty = 0;
+			curDifficulty = 1;
 
 		#if !switch
 		intendedScore = Highscore.getScore(songs[curSelected].songName, curDifficulty);
@@ -231,6 +252,8 @@ class FreeplayState extends MusicBeatState
 
 		switch (curDifficulty)
 		{
+			case 1:
+				diffText.text = "NORMAL";
 			case 2:
 				diffText.text = "HARD";
 		}

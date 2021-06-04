@@ -24,8 +24,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		
-		['Reunion','Desperation','Irritability']
+		['Reunion', 'Desperation', 'Irritability']
 	];
 	var curDifficulty:Int = 2;
 
@@ -148,6 +147,7 @@ class StoryMenuState extends MusicBeatState
 		sprDifficulty = new FlxSprite(leftArrow.x + 130, leftArrow.y);
 		sprDifficulty.frames = ui_tex;
 		sprDifficulty.animation.addByPrefix('hard', 'HARD');
+		sprDifficulty.animation.addByPrefix('normal', 'NORMAL');
 		sprDifficulty.animation.play('hard');
 		changeDifficulty();
 
@@ -215,9 +215,21 @@ class StoryMenuState extends MusicBeatState
 					changeWeek(1);
 				}
 
-				rightArrow.animation.play('idle');
+				if (controls.RIGHT)
+					rightArrow.animation.play('press')
+				else
+					rightArrow.animation.play('idle');
 
-				leftArrow.animation.play('idle');
+				if (controls.LEFT)
+					leftArrow.animation.play('press');
+				else
+					leftArrow.animation.play('idle');
+
+				if (controls.RIGHT_P)
+					changeDifficulty(1);
+
+				if (controls.LEFT_P)
+					changeDifficulty(-1);
 			}
 
 			if (controls.ACCEPT)
@@ -257,9 +269,17 @@ class StoryMenuState extends MusicBeatState
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
-			var diffic = "-hard";
+			var diffic = "-easy";
 
-			PlayState.storyDifficulty = 2;
+			switch (curDifficulty)
+			{
+				case 1:
+					diffic = '-normal';
+				case 2:
+					diffic = '-hard';
+			}
+
+			PlayState.storyDifficulty = curDifficulty;
 
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = 0;
@@ -273,12 +293,20 @@ class StoryMenuState extends MusicBeatState
 
 	function changeDifficulty(change:Int = 0):Void
 	{
-		curDifficulty = 2;
+		curDifficulty += change;
+
+		if (curDifficulty < 1)
+			curDifficulty = 2;
+		if (curDifficulty > 2)
+			curDifficulty = 1;
 
 		sprDifficulty.offset.x = 0;
 
 		switch (curDifficulty)
 		{
+			case 1:
+				sprDifficulty.animation.play('normal');
+				sprDifficulty.offset.x = 70;
 			case 2:
 				sprDifficulty.animation.play('hard');
 				sprDifficulty.offset.x = 20;

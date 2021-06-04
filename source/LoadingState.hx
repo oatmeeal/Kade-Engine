@@ -63,7 +63,7 @@ class LoadingState extends MusicBeatState
 				if (PlayState.SONG.needsVoices)
 					checkLoadSong(getVocalPath());
 				checkLibrary("shared");
-				checkLibrary("week" + PlayState.storyWeek);
+				checkLibrary("week1");
 				
 				var fadeTime = 0.3;
 				FlxG.camera.fade(FlxG.camera.bgColor, fadeTime, true);
@@ -89,7 +89,7 @@ class LoadingState extends MusicBeatState
 	
 	function checkLibrary(library:String)
 	{
-		trace(Assets.hasLibrary(library));
+		trace(Assets.hasLibrary(library) + ' ' + library);
 		if (Assets.getLibrary(library) == null)
 		{
 			@:privateAccess
@@ -148,7 +148,7 @@ class LoadingState extends MusicBeatState
 	
 	static function getNextState(target:FlxState, stopMusic = false):FlxState
 	{
-		Paths.setCurrentLevel("week" + PlayState.storyWeek);
+		Paths.setCurrentLevel("week1");
 		#if NO_PRELOAD_ALL
 		var loaded = isSoundLoaded(getSongPath())
 			&& (!PlayState.SONG.needsVoices || isSoundLoaded(getVocalPath()))

@@ -40,9 +40,13 @@ class Alphabet extends FlxSpriteGroup
 
 	var isBold:Bool = false;
 
-	public function new(x:Float, y:Float, text:String = "", ?bold:Bool = false, typed:Bool = false)
+	var size:Float = 1;
+
+	public function new(x:Float, y:Float, text:String = "", ?sizeMulti:Float = 1, ?bold:Bool = false, typed:Bool = false)
 	{
 		super(x, y);
+
+		size = sizeMulti;
 
 		_finalText = text;
 		this.text = text;
@@ -87,7 +91,7 @@ class Alphabet extends FlxSpriteGroup
 
 				if (lastWasSpace)
 				{
-					xPos += 40;
+					xPos += 40*size;
 					lastWasSpace = false;
 				}
 
@@ -95,10 +99,10 @@ class Alphabet extends FlxSpriteGroup
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0);
 
 				if (isBold)
-					letter.createBold(character);
+					letter.createBold(character, size);
 				else
 				{
-					letter.createLetter(character);
+					letter.createLetter(character, size);
 				}
 
 				add(letter);
@@ -181,21 +185,21 @@ class Alphabet extends FlxSpriteGroup
 				letter.row = curRow;
 				if (isBold)
 				{
-					letter.createBold(splitWords[loopNum]);
+					letter.createBold(splitWords[loopNum], size);
 				}
 				else
 				{
 					if (isNumber)
 					{
-						letter.createNumber(splitWords[loopNum]);
+						letter.createNumber(splitWords[loopNum], size);
 					}
 					else if (isSymbol)
 					{
-						letter.createSymbol(splitWords[loopNum]);
+						letter.createSymbol(splitWords[loopNum], size);
 					}
 					else
 					{
-						letter.createLetter(splitWords[loopNum]);
+						letter.createLetter(splitWords[loopNum], size);
 					}
 
 					letter.x += 90;
@@ -251,14 +255,15 @@ class AlphaCharacter extends FlxSprite
 		antialiasing = true;
 	}
 
-	public function createBold(letter:String)
+	public function createBold(letter:String, size:Float)
 	{
 		animation.addByPrefix(letter, letter.toUpperCase() + " bold", 24);
 		animation.play(letter);
+		setGraphicSize(cast(width*size), cast(height*size));
 		updateHitbox();
 	}
 
-	public function createLetter(letter:String):Void
+	public function createLetter(letter:String, size:Float):Void
 	{
 		var letterCase:String = "lowercase";
 		if (letter.toLowerCase() != letter)
@@ -268,6 +273,7 @@ class AlphaCharacter extends FlxSprite
 
 		animation.addByPrefix(letter, letter + " " + letterCase, 24);
 		animation.play(letter);
+		setGraphicSize(cast(width*size), cast(height*size));
 		updateHitbox();
 
 		FlxG.log.add('the row' + row);
@@ -276,15 +282,15 @@ class AlphaCharacter extends FlxSprite
 		y += row * 60;
 	}
 
-	public function createNumber(letter:String):Void
+	public function createNumber(letter:String, size:Float):Void
 	{
 		animation.addByPrefix(letter, letter, 24);
 		animation.play(letter);
-
+		setGraphicSize(cast(width*size), cast(height*size));
 		updateHitbox();
 	}
 
-	public function createSymbol(letter:String)
+	public function createSymbol(letter:String, size:Float)
 	{
 		switch (letter)
 		{
@@ -345,7 +351,7 @@ class AlphaCharacter extends FlxSprite
 				animation.addByPrefix(letter, 'space', 24);
 				animation.play(letter);
 		}
-
+		setGraphicSize(cast(width*size), cast(height*size));
 		updateHitbox();
 	}
 }

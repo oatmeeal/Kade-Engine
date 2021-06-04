@@ -85,6 +85,11 @@ class Paths
 		return getPath('sounds/$key.$SOUND_EXT', SOUND, library);
 	}
 
+	static public function cutscene(key:String, name:String)
+	{
+		return 'assets/cutscenes/$name/$key.webm';
+	}
+
 	inline static public function soundRandom(key:String, min:Int, max:Int, ?library:String)
 	{
 		return sound(key + FlxG.random.int(min, max), library);

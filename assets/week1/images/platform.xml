@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Untitled-1.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ShitDawg0000" x="0" y="0" width="2560" height="581"/>
+	<SubTexture name="ShitDawg0001" x="0" y="581" width="2560" height="581"/>
+</TextureAtlas>

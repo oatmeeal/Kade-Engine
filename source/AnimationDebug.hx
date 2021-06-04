@@ -139,12 +139,12 @@ class AnimationDebug extends FlxState
 			camFollow.velocity.set();
 		}
 
-		if (FlxG.keys.justPressed.W)
+		if (FlxG.keys.justPressed.O)
 		{
 			curAnim -= 1;
 		}
 
-		if (FlxG.keys.justPressed.S)
+		if (FlxG.keys.justPressed.P)
 		{
 			curAnim += 1;
 		}
@@ -155,7 +155,7 @@ class AnimationDebug extends FlxState
 		if (curAnim >= animList.length)
 			curAnim = 0;
 
-		if (FlxG.keys.justPressed.S || FlxG.keys.justPressed.W || FlxG.keys.justPressed.SPACE)
+		if (FlxG.keys.justPressed.O || FlxG.keys.justPressed.P || FlxG.keys.justPressed.SPACE)
 		{
 			char.playAnim(animList[curAnim]);
 
@@ -163,10 +163,10 @@ class AnimationDebug extends FlxState
 			genBoyOffsets(false);
 		}
 
-		var upP = FlxG.keys.anyJustPressed([UP]);
-		var rightP = FlxG.keys.anyJustPressed([RIGHT]);
-		var downP = FlxG.keys.anyJustPressed([DOWN]);
-		var leftP = FlxG.keys.anyJustPressed([LEFT]);
+		var upP = FlxG.keys.anyJustPressed([W]);
+		var rightP = FlxG.keys.anyJustPressed([D]);
+		var downP = FlxG.keys.anyJustPressed([S]);
+		var leftP = FlxG.keys.anyJustPressed([A]);
 
 		var holdShift = FlxG.keys.pressed.SHIFT;
 		var multiplier = 1;

@@ -16,15 +16,6 @@ class GameOverSubstate extends MusicBeatSubstate
 	var stageSuffix:String = "";
 
 	var money:Alphabet;
-	
-	function createCoolText(text:String)
-	{
-		if(money != null) return;
-		var money:Alphabet = new Alphabet(0, 0, text, true, false);
-		money.screenCenter(X);
-		money.y += 200;
-		add(money);
-	}
 
 	function destroyCoolText() {
 		remove(money);
@@ -49,8 +40,6 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		bf = new Boyfriend(x, y, daBf);
 		add(bf);
-		
-		createCoolText('U suck Lmao');
 
 		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
 		add(camFollow);

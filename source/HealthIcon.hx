@@ -12,21 +12,15 @@ class HealthIcon extends FlxSprite
 	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
-		
+
 		loadGraphic(Paths.image('iconGrid'), true, 150, 150);
 		trace(char);
 		antialiasing = true;
 		animation.add('bf', [0, 1], 0, false, isPlayer);
-		animation.add('oaty', [12, 13], 0, false, isPlayer);
-		animation.add('oaty-crazy', [12, 13], 0, false, isPlayer);
-		animation.add('gf', [16], 0, false, isPlayer);
+		animation.add('oaty', [2, 3], 0, false, isPlayer);
+		animation.add('oaty-crazy', [4, 5], 0, false, isPlayer);
+		animation.add('oaty-irritated', [6, 7], 0, false, isPlayer);
 		animation.play(char);
-
-		switch(char)
-		{
-			case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':
-				antialiasing = false;
-		}
 
 		scrollFactor.set();
 	}

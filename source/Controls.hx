@@ -31,6 +31,7 @@ enum abstract Action(String) to String from String
 	var PAUSE = "pause";
 	var RESET = "reset";
 	var CHEAT = "cheat";
+	var M = "m";
 }
 #else
 @:enum
@@ -53,6 +54,7 @@ abstract Action(String) to String from String
 	var PAUSE = "pause";
 	var RESET = "reset";
 	var CHEAT = "cheat";
+	var M = "m";
 }
 #end
 
@@ -69,6 +71,7 @@ enum Device
  */
 enum Control
 {
+	M;
 	UP;
 	LEFT;
 	RIGHT;
@@ -95,6 +98,7 @@ enum KeyboardScheme
 class Controls extends FlxActionSet
 {
 	var _up = new FlxActionDigital(Action.UP);
+	var _m = new FlxActionDigital(Action.M);
 	var _left = new FlxActionDigital(Action.LEFT);
 	var _right = new FlxActionDigital(Action.RIGHT);
 	var _down = new FlxActionDigital(Action.DOWN);
@@ -120,6 +124,11 @@ class Controls extends FlxActionSet
 
 	public var gamepadsAdded:Array<Int> = [];
 	public var keyboardScheme = KeyboardScheme.None;
+
+	public var M(get, never):Bool;
+
+	inline function get_M()
+		return _m.check();
 
 	public var UP(get, never):Bool;
 
@@ -301,6 +310,7 @@ class Controls extends FlxActionSet
 	{
 		return switch (control)
 		{
+			case M: _m;
 			case UP: _up;
 			case DOWN: _down;
 			case LEFT: _left;
@@ -329,6 +339,8 @@ class Controls extends FlxActionSet
 	{
 		switch (control)
 		{
+			case M:
+				func(_m, JUST_PRESSED);
 			case UP:
 				func(_up, PRESSED);
 				func(_upP, JUST_PRESSED);
@@ -498,6 +510,7 @@ class Controls extends FlxActionSet
 		switch (scheme)
 		{
 			case Solo:
+				inline bindKeys(Control.M, [FlxKey.M]);//Lol Idk
 				inline bindKeys(Control.UP, [J, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [F, FlxKey.DOWN]);
 				inline bindKeys(Control.LEFT, [D, FlxKey.LEFT]);
@@ -507,6 +520,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 				inline bindKeys(Control.RESET, [R]);
 			case Duo(true):
+				inline bindKeys(Control.M, [FlxKey.M]);//Lol Idk
 				inline bindKeys(Control.UP, [W, FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
 				inline bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
@@ -515,6 +529,7 @@ class Controls extends FlxActionSet
 				inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 				inline bindKeys(Control.RESET, [R]);
 			case Duo(false):
+				inline bindKeys(Control.M, [FlxKey.M]);//Lol Idk
 				inline bindKeys(Control.UP, [FlxKey.UP]);
 				inline bindKeys(Control.DOWN, [FlxKey.DOWN]);
 				inline bindKeys(Control.LEFT, [FlxKey.LEFT]);
@@ -530,6 +545,7 @@ class Controls extends FlxActionSet
 		switch (scheme)
 		{
 			case Solo:
+				inline bindKeys(Control.M, [FlxKey.M]);//Lol Idk
 				bindKeys(Control.UP, [W, FlxKey.UP]);
 				bindKeys(Control.DOWN, [S, FlxKey.DOWN]);
 				bindKeys(Control.LEFT, [A, FlxKey.LEFT]);
@@ -539,6 +555,7 @@ class Controls extends FlxActionSet
 				bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 				bindKeys(Control.RESET, [R]);
 			case Duo(true):
+				inline bindKeys(Control.M, [FlxKey.M]);//Lol Idk
 				bindKeys(Control.UP, [W]);
 				bindKeys(Control.DOWN, [S]);
 				bindKeys(Control.LEFT, [A]);
@@ -548,6 +565,7 @@ class Controls extends FlxActionSet
 				bindKeys(Control.PAUSE, [ONE]);
 				bindKeys(Control.RESET, [R]);
 			case Duo(false):
+				inline bindKeys(Control.M, [FlxKey.M]);//Lol Idk
 				bindKeys(Control.UP, [FlxKey.UP]);
 				bindKeys(Control.DOWN, [FlxKey.DOWN]);
 				bindKeys(Control.LEFT, [FlxKey.LEFT]);
