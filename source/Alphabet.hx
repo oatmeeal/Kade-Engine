@@ -109,6 +109,29 @@ class Alphabet extends FlxSpriteGroup
 
 				lastSprite = letter;
 			}
+			else if(AlphaCharacter.symbols.indexOf(character) != -1 && character == "_")
+			{
+				if (lastSprite != null)
+					{
+						xPos = lastSprite.x + lastSprite.width;
+					}
+	
+					if (lastWasSpace)
+					{
+						xPos += 40*size;
+						lastWasSpace = false;
+					}
+	
+					// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
+					var letter:AlphaCharacter = new AlphaCharacter(xPos, 0);
+					
+					letter.createSymbolBold(character, size);
+	
+					add(letter);
+	
+					lastSprite = letter;
+			}
+		
 
 			// loopNum += 1;
 		}
@@ -157,7 +180,7 @@ class Alphabet extends FlxSpriteGroup
 			var isSymbol:Bool = AlphaCharacter.symbols.indexOf(splitWords[loopNum]) != -1;
 			#end
 
-			if (AlphaCharacter.alphabet.indexOf(splitWords[loopNum].toLowerCase()) != -1 || isNumber || isSymbol)
+			if (AlphaCharacter.alphabet.indexOf(splitWords[loopNum].toLowerCase()) != -1)
 				// if (AlphaCharacter.alphabet.contains(splitWords[loopNum].toLowerCase()) || isNumber || isSymbol)
 
 			{
@@ -353,5 +376,18 @@ class AlphaCharacter extends FlxSprite
 		}
 		setGraphicSize(cast(width*size), cast(height*size));
 		updateHitbox();
+	}
+
+	public function createSymbolBold(letter:String, size:Float)
+	{
+		switch (letter)
+		{
+			case '_':
+				animation.addByPrefix(letter, '_ bold', 24);
+				animation.play(letter);
+				y += 12;
+			setGraphicSize(cast(width*size), cast(height*size));
+			updateHitbox();
+		}
 	}
 }

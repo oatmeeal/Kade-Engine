@@ -106,6 +106,8 @@
 	<SubTexture name="A bold0001" x="717" y="0" width="54" height="67"/>
 	<SubTexture name="A bold0002" x="771" y="0" width="54" height="67"/>
 	<SubTexture name="A bold0003" x="771" y="0" width="54" height="67"/>
+        <SubTexture name="Ä bold0000" x="0" y="530" width="54" height="72"/>
+	<SubTexture name="_ bold0000" x="0" y="605" width="54" height="30"/>
 	<SubTexture name="A captial0000" x="583" y="195" width="45" height="59" pivotX="0.15" pivotY="0"/>
 	<SubTexture name="A captial0001" x="583" y="195" width="45" height="59"/>
 	<SubTexture name="A captial0002" x="509" y="196" width="45" height="59"/>

@@ -363,37 +363,40 @@ class TitleState extends MusicBeatState
 
 		switch (curBeat)
 		{
-			case 1:
-				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-			// credTextShit.visible = true;
-			case 3:
-				addMoreText('Present');
-			// credTextShit.text += '\npresent...';
-			// credTextShit.addText();
-			case 4:
-				addMoreText('Friday Night Funkin');
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = 'In association \nwith';
-			// credTextShit.screenCenter();
 			case 5:
-				createCoolText(['Oaty Mod By']);
-			// credTextShit.text += '\nNewgrounds';
+				createCoolText(['Oatmeeal']);
+			// credTextShit.visible = true;
 			case 6:
-				addMoreText('Oatmeal');
-			case 7:
 				addMoreText('FutureMapper');
-			case 8:
-				addMoreText('Juho Ärmänen');
-			case 9:
+			case 7:
 				addMoreText('irre__');
-			case 10:
-				addMoreText('Carlitosmorecom');
-			case 12:
+			case 8:
+				addMoreText('Juho ÄrmÄnen');
+			case 11:
 				deleteCoolText();
-				ngSpr.visible = false;
-
-			case 13:
+				createCoolText([curWacky[0]]);
+			case 12:
+				addMoreText(curWacky[1]);
+			case 15:
+				curWacky = FlxG.random.getObject(getIntroTextShit());
+				deleteCoolText();
+				createCoolText([curWacky[0]]);
+			case 16:
+				addMoreText(curWacky[1]);
+			case 19:
+				curWacky = FlxG.random.getObject(getIntroTextShit());
+				deleteCoolText();
+				createCoolText([curWacky[0]]);
+			case 20:
+				addMoreText(curWacky[1]);
+			case 23:
+				curWacky = FlxG.random.getObject(getIntroTextShit());
+				deleteCoolText();
+				createCoolText([curWacky[0]]);
+			case 24:
+				addMoreText(curWacky[1]);
+			case 27:
+				deleteCoolText();
 				skipIntro();
 		}
 	}
