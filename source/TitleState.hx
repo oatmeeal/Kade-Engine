@@ -372,10 +372,22 @@ class TitleState extends MusicBeatState
 				addMoreText('irre__');
 			case 8:
 				addMoreText('Juho ÄrmÄnen');
+			case 9:
+				deleteCoolText();
+				createCoolText([curWacky[0]]);
+			case 10:
+				addMoreText(curWacky[1]);
 			case 11:
+				curWacky = FlxG.random.getObject(getIntroTextShit());
 				deleteCoolText();
 				createCoolText([curWacky[0]]);
 			case 12:
+				addMoreText(curWacky[1]);
+			case 13:
+				curWacky = FlxG.random.getObject(getIntroTextShit());
+				deleteCoolText();
+				createCoolText([curWacky[0]]);
+			case 14:
 				addMoreText(curWacky[1]);
 			case 15:
 				curWacky = FlxG.random.getObject(getIntroTextShit());
@@ -383,19 +395,7 @@ class TitleState extends MusicBeatState
 				createCoolText([curWacky[0]]);
 			case 16:
 				addMoreText(curWacky[1]);
-			case 19:
-				curWacky = FlxG.random.getObject(getIntroTextShit());
-				deleteCoolText();
-				createCoolText([curWacky[0]]);
-			case 20:
-				addMoreText(curWacky[1]);
-			case 23:
-				curWacky = FlxG.random.getObject(getIntroTextShit());
-				deleteCoolText();
-				createCoolText([curWacky[0]]);
-			case 24:
-				addMoreText(curWacky[1]);
-			case 27:
+			case 17:
 				deleteCoolText();
 				skipIntro();
 		}

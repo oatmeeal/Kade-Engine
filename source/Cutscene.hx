@@ -53,10 +53,6 @@ class Cutscene extends MusicBeatState {
 		
 		fuckingVolume = FlxG.sound.music.volume;
 		FlxG.sound.music.volume = 0;
-		var isHTML:Bool = false;
-		#if web
-		isHTML = true;
-		#end
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 

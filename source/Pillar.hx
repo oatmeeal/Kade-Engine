@@ -9,7 +9,7 @@ class Pillar extends FlxSprite
 	}
 
 	public override function update(elapsed:Float) {
-		x = elapsed % 50;
 		super.update(elapsed);
+		x += 25;
 	}
 }
