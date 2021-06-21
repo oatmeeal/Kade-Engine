@@ -1,5 +1,7 @@
 package;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
@@ -36,6 +38,8 @@ class Alphabet extends FlxSpriteGroup
 	var xPosResetted:Bool = false;
 	var lastWasSpace:Bool = false;
 
+	var listOAlphabets:List<AlphaCharacter> = new List<AlphaCharacter>();
+
 	var splitWords:Array<String> = [];
 
 	var isBold:Bool = false;
@@ -62,6 +66,7 @@ class Alphabet extends FlxSpriteGroup
 			{
 				addText();
 			}
+
 		}
 	}
 
@@ -97,6 +102,7 @@ class Alphabet extends FlxSpriteGroup
 
 				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0);
+				listOAlphabets.add(letter);
 
 				if (isBold)
 					letter.createBold(character, size);
@@ -205,6 +211,7 @@ class Alphabet extends FlxSpriteGroup
 
 				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 55 * yMulti);
+				listOAlphabets.add(letter);
 				letter.row = curRow;
 				if (isBold)
 				{
