@@ -181,6 +181,51 @@ class AccuracyOption extends Option
 	}
 }
 
+class ScoreAlpha extends Option
+{
+	public var val:Int = 10;
+	public function new(desc:String)
+	{
+		val = FlxG.save.data.scoreOpacity;
+		super();
+		description = desc;
+		acceptValues = true;
+	}
+		
+	public override function press():Bool
+	{
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return 'Judgement Opacity';
+	}
+	
+	override function left():Bool {
+		if (val <= 0)
+			return false;
+		val -= 1;
+		FlxG.save.data.scoreOpacity = val;
+		return true;
+	}
+
+	override function getValue():String {
+		return '' + val;
+	}
+
+	override function right():Bool {
+		if (val >= 10)
+		{
+			val = 10;
+			return false;
+		}
+		val += 1;
+		FlxG.save.data.scoreOpacity = val;
+		return true;
+	}
+}
+
 class SongPositionOption extends Option
 {
 	public function new(desc:String)

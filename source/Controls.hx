@@ -16,14 +16,17 @@ enum abstract Action(String) to String from String
 {
 	var UP = "up";
 	var LEFT = "left";
+	var SPACE = "space";
 	var RIGHT = "right";
 	var DOWN = "down";
 	var UP_P = "up-press";
 	var LEFT_P = "left-press";
+	var SPACE_P = "space-press";
 	var RIGHT_P = "right-press";
 	var DOWN_P = "down-press";
 	var UP_R = "up-release";
 	var LEFT_R = "left-release";
+	var SPACE_R = "space-release";
 	var RIGHT_R = "right-release";
 	var DOWN_R = "down-release";
 	var ACCEPT = "accept";
@@ -73,6 +76,7 @@ enum Control
 {
 	M;
 	UP;
+	SPACE;
 	LEFT;
 	RIGHT;
 	DOWN;
@@ -99,15 +103,18 @@ class Controls extends FlxActionSet
 {
 	var _up = new FlxActionDigital(Action.UP);
 	var _m = new FlxActionDigital(Action.M);
+	var _space = new FlxActionDigital(Action.SPACE);
 	var _left = new FlxActionDigital(Action.LEFT);
 	var _right = new FlxActionDigital(Action.RIGHT);
 	var _down = new FlxActionDigital(Action.DOWN);
 	var _upP = new FlxActionDigital(Action.UP_P);
 	var _leftP = new FlxActionDigital(Action.LEFT_P);
+	var _spaceP = new FlxActionDigital(Action.SPACE_P);
 	var _rightP = new FlxActionDigital(Action.RIGHT_P);
 	var _downP = new FlxActionDigital(Action.DOWN_P);
 	var _upR = new FlxActionDigital(Action.UP_R);
 	var _leftR = new FlxActionDigital(Action.LEFT_R);
+	var _spaceR = new FlxActionDigital(Action.SPACE_R);
 	var _rightR = new FlxActionDigital(Action.RIGHT_R);
 	var _downR = new FlxActionDigital(Action.DOWN_R);
 	var _accept = new FlxActionDigital(Action.ACCEPT);
@@ -140,6 +147,11 @@ class Controls extends FlxActionSet
 	inline function get_LEFT()
 		return _left.check();
 
+	public var SPACE(get, never):Bool;
+
+	inline function get_SPACE()
+		return _space.check();
+
 	public var RIGHT(get, never):Bool;
 
 	inline function get_RIGHT()
@@ -160,6 +172,11 @@ class Controls extends FlxActionSet
 	inline function get_LEFT_P()
 		return _leftP.check();
 
+	public var SPACE_P(get, never):Bool;
+
+	inline function get_SPACE_P()
+		return _spaceP.check();
+
 	public var RIGHT_P(get, never):Bool;
 
 	inline function get_RIGHT_P()
@@ -179,6 +196,11 @@ class Controls extends FlxActionSet
 
 	inline function get_LEFT_R()
 		return _leftR.check();
+
+	public var SPACE_R(get, never):Bool;
+
+	inline function get_SPACE_R()
+		return _spaceR.check();
 
 	public var RIGHT_R(get, never):Bool;
 
@@ -237,6 +259,10 @@ class Controls extends FlxActionSet
 		add(_pause);
 		add(_reset);
 		add(_cheat);
+
+		add(_space);
+		add(_spaceP);
+		add(_spaceR);
 
 		for (action in digitalActions)
 			byName[action.name] = action;
@@ -313,6 +339,7 @@ class Controls extends FlxActionSet
 			case M: _m;
 			case UP: _up;
 			case DOWN: _down;
+			case SPACE: _space;
 			case LEFT: _left;
 			case RIGHT: _right;
 			case ACCEPT: _accept;
@@ -345,6 +372,10 @@ class Controls extends FlxActionSet
 				func(_up, PRESSED);
 				func(_upP, JUST_PRESSED);
 				func(_upR, JUST_RELEASED);
+			case SPACE:
+				func(_space, PRESSED);
+				func(_spaceP, JUST_PRESSED);
+				func(_spaceR, JUST_RELEASED);
 			case LEFT:
 				func(_left, PRESSED);
 				func(_leftP, JUST_PRESSED);
@@ -595,8 +626,9 @@ class Controls extends FlxActionSet
 		inline bindKeys(Control.UP, [FlxKey.fromString(FlxG.save.data.upBind), FlxKey.UP]);
 		inline bindKeys(Control.DOWN, [FlxKey.fromString(FlxG.save.data.downBind), FlxKey.DOWN]);
 		inline bindKeys(Control.LEFT, [FlxKey.fromString(FlxG.save.data.leftBind), FlxKey.LEFT]);
+		inline bindKeys(Control.SPACE, [FlxKey.fromString("SPACE"), FlxKey.SPACE]);
 		inline bindKeys(Control.RIGHT, [FlxKey.fromString(FlxG.save.data.rightBind), FlxKey.RIGHT]);
-		inline bindKeys(Control.ACCEPT, [Z, SPACE, ENTER]);
+		inline bindKeys(Control.ACCEPT, [Z, ENTER]);
 		inline bindKeys(Control.BACK, [BACKSPACE, ESCAPE]);
 		inline bindKeys(Control.PAUSE, [P, ENTER, ESCAPE]);
 		inline bindKeys(Control.RESET, [FlxKey.fromString(FlxG.save.data.killBind)]);

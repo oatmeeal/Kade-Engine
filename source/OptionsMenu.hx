@@ -47,6 +47,7 @@ class OptionsMenu extends MusicBeatState
 			new NPSDisplayOption("Shows your current Notes Per Second."),
 			new SongPositionOption("Show the songs current position (as a bar)"),
 			new CpuStrums("CPU's strumline lights up when a note hits it."),
+			new ScoreAlpha("Sets the starting opacity of the judgement Text")
 			#end
 		]),
 		
@@ -153,16 +154,16 @@ class OptionsMenu extends MusicBeatState
 				{
 					if (FlxG.keys.pressed.SHIFT)
 						{
-							if (FlxG.keys.pressed.RIGHT)
+							if (FlxG.keys.pressed.D)
 								currentSelectedCat.getOptions()[curSelected].right();
-							if (FlxG.keys.pressed.LEFT)
+							if (FlxG.keys.pressed.A)
 								currentSelectedCat.getOptions()[curSelected].left();
 						}
 					else
 					{
-						if (FlxG.keys.justPressed.RIGHT)
+						if (FlxG.keys.justPressed.D)
 							currentSelectedCat.getOptions()[curSelected].right();
-						if (FlxG.keys.justPressed.LEFT)
+						if (FlxG.keys.justPressed.A)
 							currentSelectedCat.getOptions()[curSelected].left();
 					}
 				}
@@ -170,14 +171,14 @@ class OptionsMenu extends MusicBeatState
 				{
 					if (FlxG.keys.pressed.SHIFT)
 					{
-						if (FlxG.keys.justPressed.RIGHT)
+						if (FlxG.keys.justPressed.D)
 							FlxG.save.data.offset += 0.1;
-						else if (FlxG.keys.justPressed.LEFT)
+						else if (FlxG.keys.justPressed.A)
 							FlxG.save.data.offset -= 0.1;
 					}
-					else if (FlxG.keys.pressed.RIGHT)
+					else if (FlxG.keys.pressed.D)
 						FlxG.save.data.offset += 0.1;
-					else if (FlxG.keys.pressed.LEFT)
+					else if (FlxG.keys.pressed.A)
 						FlxG.save.data.offset -= 0.1;
 					
 					versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
@@ -191,14 +192,14 @@ class OptionsMenu extends MusicBeatState
 			{
 				if (FlxG.keys.pressed.SHIFT)
 				{
-					if (FlxG.keys.justPressed.RIGHT)
+					if (FlxG.keys.justPressed.D)
 						FlxG.save.data.offset += 0.1;
-					else if (FlxG.keys.justPressed.LEFT)
+					else if (FlxG.keys.justPressed.A)
 						FlxG.save.data.offset -= 0.1;
 				}
-				else if (FlxG.keys.pressed.RIGHT)
+				else if (FlxG.keys.pressed.D)
 					FlxG.save.data.offset += 0.1;
-				else if (FlxG.keys.pressed.LEFT)
+				else if (FlxG.keys.pressed.A)
 					FlxG.save.data.offset -= 0.1;
 				
 				versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;

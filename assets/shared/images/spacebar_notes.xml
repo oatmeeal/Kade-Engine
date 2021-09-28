@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Untitled-1.png">
+	<!-- Created with Adobe Animate version 21.0.6.41649 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="confirm" x="0" y="0" width="150" height="150" frameX="25" frameY="25" frameWidth="150" frameHeight="150"/>
+	<SubTexture name="press" x="150" y="0" width="150" height="150"/>
+	<SubTexture name="hold" x="300" y="0" width="50" height="43"/>
+	<SubTexture name="end" x="350" y="0" width="50" height="64"/>
+	<SubTexture name="static" x="0" y="150" width="150" height="150"/>
+</TextureAtlas>

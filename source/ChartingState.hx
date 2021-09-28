@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.effects.FlxTrail;
 import flixel.FlxCamera;
 import flixel.addons.ui.FlxUIText;
 import haxe.zip.Writer;

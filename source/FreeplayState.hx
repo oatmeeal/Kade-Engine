@@ -26,7 +26,6 @@ class FreeplayState extends MusicBeatState
 	var curDifficulty:Int = 2;
 
 	var scoreText:FlxText;
-	var comboText:FlxText;
 	var diffText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
@@ -126,10 +125,6 @@ class FreeplayState extends MusicBeatState
 		diffText.font = scoreText.font;
 		add(diffText);
 
-		comboText = new FlxText(diffText.x + 100, diffText.y, 0, "", 24);
-		comboText.font = diffText.font;
-		add(comboText);
-
 		add(scoreText);
 
 		changeSelection();
@@ -143,7 +138,7 @@ class FreeplayState extends MusicBeatState
 		selector.text = ">";
 		// add(selector);
 		trace('Line 122');
-		var swag:Alphabet = new Alphabet(1, 0, "swag");
+		//var swag:Alphabet = new Alphabet(1, 0, "swag");
 
 		// JUST DOIN THIS SHIT FOR TESTING!!!
 		/* 
@@ -200,7 +195,6 @@ class FreeplayState extends MusicBeatState
 			lerpScore = intendedScore;
 
 		scoreText.text = "PERSONAL BEST:" + lerpScore;
-		comboText.text = combo + '\n';
 
 		var upP = controls.UP_P;
 		var downP = controls.DOWN_P;
@@ -248,7 +242,7 @@ class FreeplayState extends MusicBeatState
 			PlayState.storyDifficulty = curDifficulty;
 			PlayState.storyWeek = songs[curSelected].week;
 			trace('CUR WEEK' + PlayState.storyWeek);
-			LoadingState.loadAndSwitchState(new PlayState());
+			LoadingState.loadAndSwitchState(new ModifiersState());
 		}
 	}
 

@@ -15,6 +15,8 @@ class Character extends FlxSprite
 	public var isPlayer:Bool = false;
 	public var curCharacter:String = 'bf';
 
+	public var altAnim:Bool = false;
+
 	public var holdTimer:Float = 0;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
@@ -139,17 +141,29 @@ class Character extends FlxSprite
 			case 'oaty-crazy':
 				tex = Paths.getSparrowAtlas('characters/oaty-crazy');
 				frames = tex;
-				animation.addByPrefix('idle', 'Oaty idle dance', 24);
-				animation.addByPrefix('singUP', 'Oaty Sing Note UP', 24);
-				animation.addByPrefix('singRIGHT', 'Oaty Sing Note RIGHT', 24);
-				animation.addByPrefix('singDOWN', 'Oaty Sing Note DOWN', 24);
-				animation.addByPrefix('singLEFT', 'Oaty Sing Note LEFT', 24);
+				animation.addByPrefix('idle', 'Oaty idle danceOG', 24);
+				animation.addByPrefix('singUP', 'Oaty Sing Note UPOG', 24);
+				animation.addByPrefix('singRIGHT', 'Oaty Sing Note RIGHTOG', 24);
+				animation.addByPrefix('singDOWN', 'Oaty Sing Note DOWNOG', 24);
+				animation.addByPrefix('singLEFT', 'Oaty Sing Note LEFTOG', 24);
+
+				animation.addByPrefix('idleALT', 'Oaty idle danceALT', 24);
+				animation.addByPrefix('singUPALT', 'Oaty Sing Note UPALT', 24);
+				animation.addByPrefix('singRIGHTALT', 'Oaty Sing Note RIGHTALT', 24);
+				animation.addByPrefix('singDOWNALT', 'Oaty Sing Note DOWNALT', 24);
+				animation.addByPrefix('singLEFTALT', 'Oaty Sing Note LEFTALT', 24);
 
 				addOffset('idle');
 				addOffset("singUP", -6, 62);
 				addOffset("singRIGHT", 1, 47);
 				addOffset("singLEFT", -10, 16);
 				addOffset("singDOWN", -33, 25);
+
+				addOffset('idleALT');
+				addOffset("singUPALT", -6, 62);
+				addOffset("singRIGHTALT", 1, 47);
+				addOffset("singLEFTALT", -10, 16);
+				addOffset("singDOWNALT", -33, 25);
 
 				playAnim('idle');
 		}
@@ -279,10 +293,10 @@ class Character extends FlxSprite
 
 	public function playAnim(AnimName:String, Force:Bool = false, Reversed:Bool = false, Frame:Int = 0):Void
 	{
-		animation.play(AnimName, Force, Reversed, Frame);
+		animation.play(AnimName + (altAnim ? 'ALT' : ''), Force, Reversed, Frame);
 
-		var daOffset = animOffsets.get(AnimName);
-		if (animOffsets.exists(AnimName))
+		var daOffset = animOffsets.get(AnimName + (altAnim ? 'ALT' : ''));
+		if (animOffsets.exists(AnimName + (altAnim ? 'ALT' : '')))
 		{
 			offset.set(daOffset[0], daOffset[1]);
 		}

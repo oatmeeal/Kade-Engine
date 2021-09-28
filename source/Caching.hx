@@ -124,5 +124,4 @@ class Caching extends MusicBeatState
 
         FlxG.switchState(new TitleState());
     }
-
 }

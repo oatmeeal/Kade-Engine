@@ -49,6 +49,13 @@ class Alphabet extends FlxSpriteGroup
 	public function new(x:Float, y:Float, text:String = "", ?sizeMulti:Float = 1, ?bold:Bool = false, typed:Bool = false)
 	{
 		super(x, y);
+		if (isMenuItem)
+		{
+				var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
+		
+				y = FlxMath.lerp(y, (scaledY * 120) + (FlxG.height * 0.48), 1);
+				x = FlxMath.lerp(x, (targetY * 20) + 90, 1);
+		}
 
 		size = sizeMulti;
 
@@ -257,11 +264,10 @@ class Alphabet extends FlxSpriteGroup
 		if (isMenuItem)
 		{
 			var scaledY = FlxMath.remapToRange(targetY, 0, 1, 0, 1.3);
-
+	
 			y = FlxMath.lerp(y, (scaledY * 120) + (FlxG.height * 0.48), 0.30);
 			x = FlxMath.lerp(x, (targetY * 20) + 90, 0.30);
 		}
-
 		super.update(elapsed);
 	}
 }

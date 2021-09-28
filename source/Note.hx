@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.effects.FlxTrail;
 import flixel.addons.effects.FlxSkewedSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -16,6 +17,8 @@ using StringTools;
 class Note extends FlxSprite
 {
 	public var strumTime:Float = 0;
+
+	public var trail:FlxTrail;
 
 	public var mustPress:Bool = false;
 	public var noteData:Int = 0;
@@ -251,6 +254,16 @@ class Note extends FlxSprite
 		{
 			if (alpha > 0.3)
 				alpha = 0.3;
+		}
+		alpha = 0;
+	}
+
+	public override function destroy()
+	{
+		super.destroy();
+		if(trail != null)
+		{
+			trail.destroy();
 		}
 	}
 }
